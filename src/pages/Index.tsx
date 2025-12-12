@@ -1,14 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from 'react-helmet-async';
+import Layout from '@/components/layout/Layout';
+import Hero from '@/components/home/Hero';
+import HowItWorks from '@/components/home/HowItWorks';
+import Categories from '@/components/home/Categories';
+import Stats from '@/components/home/Stats';
 
-const Index = () => {
+export default function Index() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Medi-Share - Buy & Sell Unused Medicines at Half Price</title>
+        <meta
+          name="description"
+          content="Connect with people in your city to buy and sell unused BP, diabetes, cancer medicines at 50% off. Reduce medicine waste and make healthcare affordable."
+        />
+      </Helmet>
+      <Layout>
+        <Hero />
+        <HowItWorks />
+        <Categories />
+        <Stats />
+      </Layout>
+    </>
   );
-};
-
-export default Index;
+}
