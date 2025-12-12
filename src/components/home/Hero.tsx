@@ -24,7 +24,7 @@ export default function Hero() {
           {/* Headline */}
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             Buy & Sell Unused Medicines at{' '}
-            <span className="text-gradient">Half Price</span>
+             className="text-gradient">Half Price
           </h1>
 
           {/* Subheadline */}
