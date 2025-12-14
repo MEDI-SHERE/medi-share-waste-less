@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                support@medishare.com
+                medishere_codematrix@gmail.com
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
