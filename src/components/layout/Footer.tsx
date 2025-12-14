@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Pill, Heart, Mail, Phone, MapPin } from 'lucide-react';
-
 export default function Footer() {
-  return (
-    <footer className="bg-card border-t border-border mt-auto">
+  return <footer className="bg-card border-t border-border mt-auto">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -82,9 +80,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">
-            © 2024 Medi-Share by CodeMatrix. All rights reserved.
-          </p>
+          <p className="text-xs text-muted-foreground">© 2025Medi-Share by CodeMatrix. All rights reserved.</p>
           <div className="flex gap-4 text-xs text-muted-foreground">
             <Link to="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="#" className="hover:text-primary transition-colors">Terms of Service</Link>
@@ -99,6 +95,5 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
