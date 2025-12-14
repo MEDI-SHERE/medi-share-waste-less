@@ -156,10 +156,67 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_profiles: {
+        Row: {
+          avatar_url: string | null
+          city: string | null
+          created_at: string | null
+          full_name: string | null
+          id: string | null
+          is_verified: boolean | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string | null
+          is_verified?: boolean | null
+        }
+        Update: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string | null
+          is_verified?: boolean | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      get_listing_with_safe_location: {
+        Args: { listing_id: string }
+        Returns: {
+          bill_url: string
+          category: Database["public"]["Enums"]["medicine_category"]
+          city: string
+          created_at: string
+          description: string
+          expiry_date: string
+          id: string
+          is_donation: boolean
+          is_urgent: boolean
+          location_lat: number
+          location_lng: number
+          medicine_name: string
+          original_price: number
+          photo_url: string
+          selling_price: number
+          status: Database["public"]["Enums"]["listing_status"]
+          user_id: string
+        }[]
+      }
+      get_safe_profile: {
+        Args: { profile_id: string }
+        Returns: {
+          avatar_url: string
+          city: string
+          full_name: string
+          id: string
+          is_verified: boolean
+        }[]
+      }
     }
     Enums: {
       listing_status: "active" | "sold" | "expired" | "donated"
