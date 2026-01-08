@@ -11,6 +11,7 @@ import Search from "./pages/Search";
 import ListMedicine from "./pages/ListMedicine";
 import Dashboard from "./pages/Dashboard";
 import ListingDetail from "./pages/ListingDetail";
+import Documentation from "./pages/Documentation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/list" element={<ListMedicine />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/listing/:id" element={<ListingDetail />} />
+              <Route path="/documentation" element={<Documentation />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
