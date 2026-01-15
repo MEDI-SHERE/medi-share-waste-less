@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, Pill, Search, PlusCircle, User, LogOut, Sparkles } from 'lucide-react';
+import { Menu, X, Pill, Search, PlusCircle, User, LogOut, Sparkles, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import {
@@ -51,6 +51,13 @@ export default function Navbar() {
             >
               <PlusCircle className="w-4 h-4" />
               List Medicine
+            </Link>
+            <Link 
+              to="/documentation" 
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
+            >
+              <FileText className="w-4 h-4" />
+              Docs
             </Link>
           </div>
 
@@ -117,6 +124,14 @@ export default function Navbar() {
               >
                 <PlusCircle className="w-4 h-4" />
                 List Medicine
+              </Link>
+              <Link
+                to="/documentation"
+                className="flex items-center gap-2 px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
+                onClick={() => setIsOpen(false)}
+              >
+                <FileText className="w-4 h-4" />
+                Docs
               </Link>
               {user ? (
                 <>
