@@ -1,13 +1,43 @@
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
-import { FileDown, Printer, ArrowLeft } from 'lucide-react';
+import { FileDown, ArrowLeft, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function Documentation() {
   const navigate = useNavigate();
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  const handlePrint = () => {
-    window.print();
+  const handleDownloadPDF = async () => {
+    setIsGenerating(true);
+    toast.info('Generating PDF, please wait...');
+    
+    try {
+      const html2pdf = (await import('html2pdf.js')).default;
+      const element = document.getElementById('documentation-content');
+      
+      if (!element) {
+        throw new Error('Documentation content not found');
+      }
+
+      const opt = {
+        margin: [10, 10, 10, 10],
+        filename: 'Medi-Share_Project_Documentation.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      await html2pdf().set(opt).from(element).save();
+      toast.success('PDF downloaded successfully!');
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast.error('Failed to generate PDF. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -25,16 +55,24 @@ export default function Documentation() {
             Back to Home
           </Button>
           <div className="flex gap-2">
-            <Button onClick={handlePrint} className="bg-primary hover:bg-primary/90">
-              <FileDown className="w-4 h-4 mr-2" />
-              Export to PDF
+            <Button 
+              onClick={handleDownloadPDF} 
+              className="bg-primary hover:bg-primary/90"
+              disabled={isGenerating}
+            >
+              {isGenerating ? (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                <FileDown className="w-4 h-4 mr-2" />
+              )}
+              {isGenerating ? 'Generating...' : 'Download PDF'}
             </Button>
           </div>
         </div>
       </div>
 
       {/* Documentation Content */}
-      <div className="documentation-content max-w-4xl mx-auto px-6 py-8 print:p-0 print:max-w-none">
+      <div id="documentation-content" className="documentation-content max-w-4xl mx-auto px-6 py-8 print:p-0 print:max-w-none">
         
         {/* Cover Page */}
         <div className="text-center mb-16 print:mb-8 print:page-break-after-always">
